@@ -9,30 +9,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../iron-icons/iron-icons.html">
-<link rel="import" href="../../paper-styles/color.html">
 <link rel="import" href="../paper-badge.html">
 
 <dom-module id="test-button">
   <style>
     :host {
       display: inline-block;
-      position: relative;
     }
 
-    paper-icon-button {
-      padding: 0;
-      margin: 0;
+    #button {
+      width: 100px;
+      height: 20px;
+      background-color: red;
     }
 
-    paper-badge {
-      --paper-badge-background: var(--paper-light-blue-300);
-    }
   </style>
   <template>
-      <paper-icon-button id="button" icon="menu" alt="menu"></paper-icon-button>
-      <paper-badge for="button" label="♠︎"></paper-badge>
+    <div id="button"></div>
+    <paper-badge id="badge" for="button" label="1"></paper-badge>
   </template>
 
   <script>
