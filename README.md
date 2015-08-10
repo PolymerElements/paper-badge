@@ -13,7 +13,7 @@ Example:
     </div>
     <div>
       <paper-button id="btn">Status</button>
-      <paper-badge for="btn" label="♥︎">b/paper-badge>
+      <paper-badge for="btn" label="♥︎"></paper-badge>
     </div>
     
     
@@ -29,5 +29,5 @@ Custom property | Description | Default
 `--paper-badge-width` | The width of the badge circle | `22px`
 `--paper-badge-height` | The height of the badge circle | `22px`
 `--paper-badge-margin-left` | Optional spacing added to the left of the badge. | `0px`
-`--paper-badge-margin-bottom` | TOptional spacing added to the bottom of the badge. | `0px`
+`--paper-badge-margin-bottom` | Optional spacing added to the bottom of the badge. | `0px`
 `--paper-badge` | Mixin applied to the badge | `{}`
