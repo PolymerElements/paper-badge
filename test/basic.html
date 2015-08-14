@@ -68,7 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var actualbadge = Polymer.dom(badge.root).querySelector('#badge');
         assert.equal(actualbadge.textContent, "1");
 
-        badge._setPosition();
+        badge.updatePosition();
 
         Polymer.Base.async(function() {
           var divRect = f.querySelector('#target').getBoundingClientRect();
@@ -95,14 +95,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test('badge is positioned correctly after being dynamically set', function(done) {
         var f = fixture('dynamic');
         var badge = f.querySelector('paper-badge');
-        badge._setPosition();
+        badge.updatePosition();
 
         Polymer.Base.async(function() {
           var contentRect = badge.getBoundingClientRect();
           expect(contentRect.left).to.not.be.equal(100 - 11);
 
           badge.for = 'target';
-          badge._setPosition();
+          badge.updatePosition();
 
           Polymer.Base.async(function() {
             var divRect = f.querySelector('#target').getBoundingClientRect();
@@ -134,7 +134,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var actualbadge = Polymer.dom(badge.root).querySelector('#badge');
           assert.equal(actualbadge.textContent, "1");
 
-          badge._setPosition();
+          badge.updatePosition();
 
           Polymer.Base.async(function() {
             var divRect = f.$.button.getBoundingClientRect();
