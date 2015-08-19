@@ -89,7 +89,7 @@ Custom property | Description | Default
       ],
 
       listeners: {
-        'iron-resize': '_setPosition'
+        'iron-resize': 'updatePosition'
       },
 
       properties: {
@@ -150,8 +150,21 @@ Custom property | Description | Default
         return target;
       },
 
-      _setPosition: function() {
+      /**
+       * Repositions the badge relative to its anchor element. This is called
+       * automatically when the badge is attached or an `iron-resize` event is
+       * fired (for exmaple if the window has resized, or your target is a
+       * custom element that implements IronResizableBehavior).
+       *
+       * You should call this in all other cases when the achor's position
+       * might have changed (for example, if it's visibility has changed, or
+       * you've manually done a page re-layout).
+       */
+      updatePosition: function() {
         if (!this._target)
+          return;
+
+        if (!this.offsetParent)
           return;
 
         var parentRect = this.offsetParent.getBoundingClientRect();
