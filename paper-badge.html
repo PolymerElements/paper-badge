@@ -70,6 +70,12 @@ Custom property | Description | Default
         display: block;
         position: absolute;
         outline: none;
+        opacity: 0;
+        background: blue;
+      }
+
+      :host(.visible) {
+        opacity: 1;
       }
 
       :host([hidden]) {
@@ -96,7 +102,8 @@ Custom property | Description | Default
         background-color: var(--paper-badge-background, --accent-color);
         opacity: var(--paper-badge-opacity, 1.0);
         color: var(--paper-badge-text-color, white);
-
+        @apply(--layout);
+        @apply(--layout-center-center);
         @apply(--paper-badge);
       }
     </style>
@@ -229,6 +236,7 @@ Custom property | Description | Default
         var targetRect = this._target.getBoundingClientRect();
         var thisRect = this.getBoundingClientRect();
 
+        this.classList.add('visible');
         this.style.left = targetRect.left - parentRect.left +
             (targetRect.width - thisRect.width / 2) + 'px';
         this.style.top = targetRect.top - parentRect.top -
