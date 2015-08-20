@@ -1,34 +1,8 @@
 {
-  "name": "paper-badge",
-  "version": "1.0.3",
-  "description": "Material design status message for elements",
-  "main": [
-    "paper-badge.html"
-  ],
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
-    "express": "^4.12.3",
     "web-component-tester": "git://github.com/polymer/web-component-tester.git"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "./node_modules/web-component-tester/bin/wct"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/PolymerElements/paper-badge.git"
-  },
-  "keywords": [
-    "web-components",
-    "polymer",
-    "badge",
-    "notification"
-  ],
-  "license": "http://polymer.github.io/LICENSE.txt",
-  "bugs": {
-    "url": "https://github.com/PolymerElements/paper-badge/issues"
-  },
-  "homepage": "https://github.com/PolymerElements/paper-badge"
+  }
 }
