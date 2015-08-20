@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "web-component-tester": "git://github.com/polymer/web-component-tester.git"
+  },
+  "scripts": {
+    "test": "./node_modules/web-component-tester/bin/wct"
+  }
+}
