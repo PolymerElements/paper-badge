@@ -11,9 +11,7 @@
     "badge",
     "notification"
   ],
-  "main": [
-    "paper-badge.html"
-  ],
+  "main": "paper-badge.html",
   "repository": {
     "type": "git",
     "url": "git://github.com/PolymerElements/paper-badge.git"
