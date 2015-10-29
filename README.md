@@ -1,4 +1,19 @@
-# paper-badge
+
+<!---
+
+This README is automatically generated from the comments in these files:
+paper-badge.html
+
+Edit those files, and our readme bot will duplicate them over here!
+Edit this file, and the bot will squash your changes :)
+
+-->
+
+_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-badge)_
+
+
+##&lt;paper-badge&gt;
+
 
 `<paper-badge>` is a circular text badge that is displayed on the top right
 corner of an element, representing a status or a notification. It will badge
@@ -11,12 +26,12 @@ Example:
       <span>Inbox</span>
       <paper-badge label="3"></paper-badge>
     </div>
+
     <div>
       <paper-button id="btn">Status</paper-button>
       <paper-badge for="btn" label="♥︎"></paper-badge>
     </div>
-    
-    
+
 ### Styling
 
 The following custom properties and mixins are available for styling:
@@ -29,5 +44,7 @@ Custom property | Description | Default
 `--paper-badge-width` | The width of the badge circle | `22px`
 `--paper-badge-height` | The height of the badge circle | `22px`
 `--paper-badge-margin-left` | Optional spacing added to the left of the badge. | `0px`
-`--paper-badge-margin-bottom` | Optional spacing added to the bottom of the badge. | `0px`
+`--paper-badge-margin-bottom` | TOptional spacing added to the bottom of the badge. | `0px`
 `--paper-badge` | Mixin applied to the badge | `{}`
+
+
