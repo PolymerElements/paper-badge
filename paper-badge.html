@@ -19,6 +19,12 @@ corner of an element, representing a status or a notification. It will badge
 the anchor element specified in the `for` attribute, or, if that doesn't exist,
 centered to the parent node containing it.
 
+Badges can also contain an icon by adding the `icon` attribute and setting
+it to the id of the desired icon. Please note that you should still set the
+`label` attribute in order to keep the element accessible. Also note that you will need to import
+the `iron-iconset` that includes the icons you want to use. See [iron-icon](../iron-icon)
+for more information on how to import and use icon sets.
+
 Example:
 
     <div style="display:inline-block">
@@ -28,7 +34,12 @@ Example:
 
     <div>
       <paper-button id="btn">Status</paper-button>
-      <paper-badge for="btn" label="♥︎"></paper-badge>
+      <paper-badge icon="favorite" for="btn" label="favorite icon"></paper-badge>
+    </div>
+
+    <div>
+      <paper-icon-button id="account-box" icon="account-box" alt="account-box"></paper-icon-button>
+      <paper-badge icon="social:mood" for="account-box" label="mood icon"></paper-badge>
     </div>
 
 ### Styling
@@ -60,7 +71,12 @@ Custom property | Description | Default
         outline: none;
       }
 
-      #badge {
+      iron-icon {
+        --iron-icon-width: 12px;
+        --iron-icon-height: 12px;
+      }
+
+      .badge {
         @apply(--paper-font-common-base);
         font-weight: normal;
         font-size: 11px;
@@ -79,7 +95,10 @@ Custom property | Description | Default
       }
     </style>
 
-    <div id="badge">{{label}}</div>
+    <div class="badge">
+      <iron-icon hidden$="{{!_computeIsIconBadge(icon)}}" icon="{{icon}}"></iron-icon>
+      <span id="badge-text" hidden$="{{_computeIsIconBadge(icon)}}">{{label}}</span>
+    </div>
   </template>
 
   <script>
@@ -116,6 +135,17 @@ Custom property | Description | Default
         label: {
           type: String,
           observer: '_labelChanged'
+        },
+
+        /**
+         * An iron-icon ID. When given, the badge content will use an
+         * `<iron-icon>` element displaying the given icon ID rather than the
+         * label text. However, the label text will still be used for
+         * accessibility purposes.
+         */
+        icon: {
+          type: String,
+          value: ''
         }
       },
 
@@ -139,6 +169,10 @@ Custom property | Description | Default
       _updateTarget: function() {
         this._target = this.target;
         this.async(this.notifyResize, 1);
+      },
+
+      _computeIsIconBadge: function(icon) {
+        return icon.length > 0;
       },
 
       /**
