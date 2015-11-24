@@ -75,8 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test('badge is positioned correctly', function(done) {
         var f = fixture('basic');
         var badge = f.querySelector('paper-badge');
-        var actualbadge = Polymer.dom(badge.root).querySelector('#badge');
-        assert.equal(actualbadge.textContent, "1");
+        assert.equal(badge.textContent.trim(), '1');
 
         expect(badge.target.getAttribute('id')).to.be.equal('target');
 
@@ -143,7 +142,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
-    test('badge is positioned correctly when nested in a target element', function(done) {
+      test('badge is positioned correctly when nested in a target element', function(done) {
         var f = fixture('nested');
         var badge = f.querySelector('paper-badge');
 
@@ -177,8 +176,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('badge is positioned correctly', function(done) {
           var f = fixture('custom');
           var badge = f.$.badge;
-          var actualbadge = Polymer.dom(badge.root).querySelector('#badge');
-          assert.equal(actualbadge.textContent, "1");
+          assert.equal(badge.textContent.trim(), '1');
 
           badge.updatePosition();
 
