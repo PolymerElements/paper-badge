@@ -70,19 +70,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="icon-badge">
+    <template>
+      <div style="position:relative">
+        <div id="target"></div>
+        <paper-badge icon="favorite" label="favorite icon"></paper-badge>
+      </div>
+    </template>
+  </test-fixture>
+
   <script>
     suite('basic', function() {
       test('badge is positioned correctly', function(done) {
         var f = fixture('basic');
         var badge = f.querySelector('paper-badge');
-        var actualbadge = Polymer.dom(badge.root).querySelector('#badge');
-        assert.equal(actualbadge.textContent, "1");
+        var actualbadge = Polymer.dom(badge.root).querySelector('.badge');
 
         expect(badge.target.getAttribute('id')).to.be.equal('target');
 
         badge.updatePosition();
 
         Polymer.Base.async(function() {
+          assert.equal(actualbadge.textContent.trim(), "1");
+
           var divRect = f.querySelector('#target').getBoundingClientRect();
           expect(divRect.width).to.be.equal(100);
           expect(divRect.height).to.be.equal(20);
@@ -143,7 +153,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
-    test('badge is positioned correctly when nested in a target element', function(done) {
+      test('badge is positioned correctly when nested in a target element', function(done) {
         var f = fixture('nested');
         var badge = f.querySelector('paper-badge');
 
@@ -173,16 +183,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
+      test('badge displays icons correctly', function(done) {
+        var f = fixture('icon-badge');
+        var badge = f.querySelector('paper-badge');
+
+        Polymer.Base.async(function() {
+          var icon = Polymer.dom(badge.root).querySelector('iron-icon');
+          expect(icon).not.to.be.null;
+          expect(icon.icon).to.be.equal(badge.icon);
+          expect(badge.getAttribute('aria-label')).to.be.equal(badge.label);
+          done();
+        });
+      });
+
       suite('badge is inside a custom element', function() {
         test('badge is positioned correctly', function(done) {
           var f = fixture('custom');
           var badge = f.$.badge;
-          var actualbadge = Polymer.dom(badge.root).querySelector('#badge');
-          assert.equal(actualbadge.textContent, "1");
+          var actualbadge = Polymer.dom(badge.root).querySelector('.badge');
 
           badge.updatePosition();
 
           Polymer.Base.async(function() {
+            assert.equal(actualbadge.textContent.trim(), "1");
+
             var divRect = f.$.button.getBoundingClientRect();
             expect(divRect.width).to.be.equal(100);
             expect(divRect.height).to.be.equal(20);
