@@ -22,6 +22,12 @@ corner of an element, representing a status or a notification. It will badge
 the anchor element specified in the `for` attribute, or, if that doesn't exist,
 centered to the parent node containing it.
 
+Badges can also contain an icon by adding the `icon` attribute and setting
+it to the id of the desired icon. Please note that you should still set the
+`label` attribute in order to keep the element accessible. Also note that you will need to import
+the `iron-iconset` that includes the icons you want to use. See [iron-icon](../iron-icon)
+for more information on how to import and use icon sets.
+
 Example:
 
     <div style="display:inline-block">
@@ -31,7 +37,12 @@ Example:
 
     <div>
       <paper-button id="btn">Status</paper-button>
-      <paper-badge for="btn" label="♥︎"></paper-badge>
+      <paper-badge icon="favorite" for="btn" label="favorite icon"></paper-badge>
+    </div>
+
+    <div>
+      <paper-icon-button id="account-box" icon="account-box" alt="account-box"></paper-icon-button>
+      <paper-badge icon="social:mood" for="account-box" label="mood icon"></paper-badge>
     </div>
 
 ### Styling
