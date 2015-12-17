@@ -72,6 +72,10 @@ Custom property | Description | Default
         outline: none;
       }
 
+      :host([hidden]) {
+        display: none !important;
+      }
+
       iron-icon {
         --iron-icon-width: 12px;
         --iron-icon-height: 12px;
@@ -153,6 +157,12 @@ Custom property | Description | Default
 
       attached: function() {
         this._updateTarget();
+      },
+
+      attributeChanged: function (name, type) {
+        if (name === 'hidden') {
+          this.updatePosition();
+        }
       },
 
       _forChanged: function() {
