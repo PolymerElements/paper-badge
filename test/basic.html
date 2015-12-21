@@ -55,7 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
       <div>
         <div id="target">
-          <paper-badge label="1"></paper-badge>
+          <paper-badge for="target" label="1"></paper-badge>
         </div>
       </div>
     </template>
@@ -163,12 +163,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var badge = f.querySelector('paper-badge');
         badge.updatePosition();
 
-        expect(badge.target.getAttribute('id')).to.not.be.equal('target');
+        expect(badge.target).to.be.null;
 
         Polymer.Base.async(function() {
-          var contentRect = badge.getBoundingClientRect();
-          expect(contentRect.left).to.not.be.equal(100 - 11);
-
           badge.for = 'target';
           expect(badge.target.getAttribute('id')).to.be.equal('target');
 

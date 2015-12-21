@@ -67,9 +67,13 @@ Custom property | Description | Default
   <template>
     <style>
       :host {
-        display: block;
-        position: absolute;
+        display: inline-block;
         outline: none;
+        vertical-align: super;
+      }
+
+      :host(.positioned) {
+        position: absolute;
       }
 
       :host([hidden]) {
@@ -180,6 +184,7 @@ Custom property | Description | Default
 
       _updateTarget: function() {
         this._target = this.target;
+        this.toggleClass('positioned', this._target != null);
         this.async(this.notifyResize, 1);
       },
 
@@ -189,20 +194,18 @@ Custom property | Description | Default
 
       /**
        * Returns the target element that this badge is anchored to. It is
-       * either the element given by the `for` attribute, or the immediate parent
-       * of the badge.
+       * either the element given by the `for` attribute, or null if no
+       * `for` attribute is specified. Note that we return null here instead
+       * of undefined in order to be consistent with the practices of standard
+       * DOM APIs, such as document.querySelector.
        */
       get target () {
-        var parentNode = Polymer.dom(this).parentNode;
         // If the parentNode is a document fragment, then we need to use the host.
         var ownerRoot = Polymer.dom(this).getOwnerRoot();
-        var target;
+        var target = null;
 
         if (this.for) {
           target = Polymer.dom(ownerRoot).querySelector('#' + this.for);
-        } else {
-          target = parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE ?
-              ownerRoot.host : parentNode;
         }
 
         return target;
