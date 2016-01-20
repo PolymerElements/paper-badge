@@ -135,7 +135,7 @@ Custom property | Description | Default
          */
         for: {
           type: String,
-          observer: '_forChanged'
+          observer: '_updateTargetIfAttached'
         },
 
         /**
@@ -156,6 +156,18 @@ Custom property | Description | Default
         icon: {
           type: String,
           value: ''
+        },
+
+        /**
+         * When set, tells the element to position itself as superscript if a
+         * `for` attribute is not explicitly specified. This will be the default
+         * behavior in the next major release. This attribute is added here for
+         * backwards compatibility.
+         */
+        _usingSuperscript: {
+          type: Boolean,
+          value: false,
+          observer: '_updateTargetIfAttached'
         }
       },
 
@@ -169,15 +181,6 @@ Custom property | Description | Default
         }
       },
 
-      _forChanged: function() {
-        // The first time the property is set is before the badge is attached,
-        // which means we're not ready to position it yet.
-        if (!this.isAttached) {
-          return;
-        }
-        this._updateTarget();
-      },
-
       _labelChanged: function() {
         this.setAttribute('aria-label', this.label);
       },
@@ -188,24 +191,40 @@ Custom property | Description | Default
         this.async(this.notifyResize, 1);
       },
 
+      _updateTargetIfAttached: function() {
+        if (!this.isAttached) {
+          return;
+        }
+        this._updateTarget();
+      },
+
       _computeIsIconBadge: function(icon) {
         return icon.length > 0;
       },
 
       /**
        * Returns the target element that this badge is anchored to. It is
-       * either the element given by the `for` attribute, or null if no
-       * `for` attribute is specified. Note that we return null here instead
-       * of undefined in order to be consistent with the practices of standard
-       * DOM APIs, such as document.querySelector.
+       * either the element given by the `for` attribute, or the immediate
+       * parent of the badge _unless_ the `_usingSuperscript` property is set.
+       * If this is the case, target will return `null` if no `for` attribute
+       * is specified. In future releases, this will be the default behavior and
+       * badges without a `for` attribute specified will be positioned as
+       * superscript.
        */
       get target () {
         // If the parentNode is a document fragment, then we need to use the host.
+        var parentNode = Polymer.dom(this).parentNode;
         var ownerRoot = Polymer.dom(this).getOwnerRoot();
         var target = null;
 
         if (this.for) {
           target = Polymer.dom(ownerRoot).querySelector('#' + this.for);
+        } else if (!this._usingSuperscript) {
+          // NOTE(traviskaufman): This functionality is being kept in order to
+          // keep the API backwards-compatible. It should be removed in the next
+          // major release.
+          target = parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE ?
+              ownerRoot.host : parentNode;
         }
 
         return target;
