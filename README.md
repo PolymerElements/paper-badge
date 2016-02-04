@@ -12,9 +12,9 @@ thing! https://github.com/PolymerLabs/tedium/issues
 
 -->
 
-[![Build Status](https://travis-ci.org/PolymerElements/paper-badge.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-badge)
+[![Build status](https://travis-ci.org/PolymerElements/paper-badge.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-badge)
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-badge)_
+_[Demo and API docs](https://elements.polymer-project.org/elements/paper-badge)_
 
 
 ##&lt;paper-badge&gt;
