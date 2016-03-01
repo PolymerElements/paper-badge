@@ -88,7 +88,6 @@ Custom property | Description | Default
 
         font-weight: normal;
         font-size: 11px;
-        border-radius: 50%;
         margin-left: var(--paper-badge-margin-left, 0px);
         margin-bottom: var(--paper-badge-margin-bottom, 0px);
         width: var(--paper-badge-width, 20px);
@@ -103,7 +102,7 @@ Custom property | Description | Default
 
     <div class="badge">
       <iron-icon hidden$="{{!_computeIsIconBadge(icon)}}" icon="{{icon}}"></iron-icon>
-      <span id="badge-text" hidden$="{{_computeIsIconBadge(icon)}}">{{label}}</span>
+      <span id="badge-text" hidden$="{{_computeIsIconBadge(icon)}}" radius="{{_setBorderRadius(radius)}}">{{label}}</span>
     </div>
   </template>
 
@@ -185,6 +184,26 @@ Custom property | Description | Default
 
       _computeIsIconBadge: function(icon) {
         return icon.length > 0;
+      },
+
+      _setBorderRadius: function(radius) {
+        var radiusVal = -1;
+        switch (radius) {
+          case "xsmall":
+            radiusVal = '20%';
+            break;
+          case "small":
+            radiusVal = '30%';
+            break;
+          case "medium":
+            radiusVal = '40%';
+            break;
+          case "big":
+            radiusVal = '50%';
+            break;
+        }
+        var badge = Polymer.dom(this.root).querySelector('.badge');
+        badge.style.borderRadius = radiusVal;
       },
 
       /**
