@@ -107,6 +107,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
       </template>
     </demo-snippet>
+
+    <h3>Badge icons can be resized up to the size of the badge</h3>
+    <demo-snippet class="centered-demo">
+      <template>
+        <!-- Enlarged paper-badge with no icon resizing. -->
+        <paper-icon-button id="icon3" icon="communication:email" alt="inbox">
+        </paper-icon-button>
+        <paper-badge icon="social:mood" for="icon3" label="happy" class="large">
+        </paper-badge>
+
+        <!-- Enlarged paper-badge with icon resizing. -->
+        <paper-icon-button id="icon4" icon="account-box" alt="account-box">
+        </paper-icon-button>
+        <paper-badge icon="social:mood" for="icon4" label="happy" class="large large-icon">
+        </paper-badge>
+
+        <style is="custom-style">
+          paper-badge.large {
+            --paper-badge-width: 30px;
+            --paper-badge-height: 30px;
+            margin-left: 5px;
+          }
+
+          paper-badge.large-icon {
+            --paper-badge-icon-width: 30px;
+            --paper-badge-icon-height: 30px;
+          }
+        </style>
+      </template>
+    </demo-snippet>
   </div>
 </body>
 </html>
