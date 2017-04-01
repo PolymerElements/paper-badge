@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         requestAnimationFrame(function() {
           badge.updatePosition();
 
-          Polymer.Base.async(function() {
+          requestAnimationFrame(function() {
             assert.equal(actualbadge.textContent.trim(), "1");
 
             var divRect = f.querySelector('#target').getBoundingClientRect();
@@ -137,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         requestAnimationFrame(function() {
           badge.removeAttribute('hidden');
 
-          Polymer.Base.async(function() {
+          requestAnimationFrame(function() {
             assert.equal(actualbadge.textContent.trim(), "1");
 
             var divRect = f.querySelector('#target').getBoundingClientRect();
@@ -169,7 +169,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         expect(badge.target.getAttribute('id')).to.not.be.equal('target');
 
-        Polymer.Base.async(function() {
+        requestAnimationFrame(function() {
           var contentRect = badge.getBoundingClientRect();
           expect(contentRect.left).to.not.be.equal(100 - 11);
 
@@ -179,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           requestAnimationFrame(function() {
             badge.updatePosition();
 
-            Polymer.Base.async(function() {
+            requestAnimationFrame(function() {
               var divRect = f.querySelector('#target').getBoundingClientRect();
               expect(divRect.width).to.be.equal(100);
               expect(divRect.height).to.be.equal(20);
@@ -212,7 +212,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         requestAnimationFrame(function() {
           badge.updatePosition();
 
-          Polymer.Base.async(function() {
+          requestAnimationFrame(function() {
             var divRect = f.querySelector('#target').getBoundingClientRect();
             expect(divRect.width).to.be.equal(100);
             expect(divRect.height).to.be.equal(20);
@@ -239,7 +239,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var f = fixture('icon-badge');
         var badge = f.querySelector('paper-badge');
 
-        Polymer.Base.async(function() {
+        requestAnimationFrame(function() {
           var icon = Polymer.dom(badge.root).querySelector('iron-icon');
           expect(icon).not.to.be.null;
           expect(icon.icon).to.be.equal(badge.icon);
@@ -257,7 +257,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           requestAnimationFrame(function() {
             badge.updatePosition();
 
-            Polymer.Base.async(function() {
+            requestAnimationFrame(function() {
               assert.equal(actualbadge.textContent.trim(), "1");
 
               var divRect = f.$.button.getBoundingClientRect();

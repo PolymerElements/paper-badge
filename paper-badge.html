@@ -153,21 +153,12 @@ Custom property | Description | Default
         icon: {
           type: String,
           value: ''
-        },
-
-        /**
-         * Treated as the hidden attribute.
-         */
-        hidden: {
-          type: Boolean,
-          reflectToAttribute: true
         }
       },
 
       attached: function() {
-        requestAnimationFrame(function() {
-          this._updateTarget();
-        }.bind(this));
+        // Polymer 2.x does not have this.offsetParent defined by attached
+        requestAnimationFrame(this._updateTarget.bind(this));
       },
 
       attributeChanged: function (name) {
@@ -191,7 +182,7 @@ Custom property | Description | Default
 
       _updateTarget: function() {
         this._target = this.target;
-        this.async(this.notifyResize, 1);
+        requestAnimationFrame(this.notifyResize.bind(this));
       },
 
       _computeIsIconBadge: function(icon) {
