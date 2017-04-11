@@ -153,12 +153,26 @@ Custom property | Description | Default
         icon: {
           type: String,
           value: ''
+        },
+
+        _boundNotifyResize: {
+          type: Function,
+          value: function() {
+            return this.notifyResize.bind(this);
+          }
+        },
+
+        _boundUpdateTarget: {
+          type: Function,
+          value: function() {
+            return this._updateTarget.bind(this);
+          }
         }
       },
 
       attached: function() {
         // Polymer 2.x does not have this.offsetParent defined by attached
-        requestAnimationFrame(this._updateTarget.bind(this));
+        requestAnimationFrame(this._boundUpdateTarget);
       },
 
       attributeChanged: function (name) {
@@ -182,7 +196,7 @@ Custom property | Description | Default
 
       _updateTarget: function() {
         this._target = this.target;
-        requestAnimationFrame(this.notifyResize.bind(this));
+        requestAnimationFrame(this._boundNotifyResize);
       },
 
       _computeIsIconBadge: function(icon) {
