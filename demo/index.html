@@ -59,12 +59,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h3>Badges can be applied to direct siblings</h3>
     <demo-snippet class="centered-demo">
       <template>
-        <div class="container" tabindex="0">
+        <div class="container sibling-example-basic" tabindex="0">
           <span>Inbox</span>
           <paper-badge label="4"></paper-badge>
         </div>
 
-        <div class="container" tabindex="0">
+        <div class="container sibling-example-basic" tabindex="0">
           <span>Mood</span>
           <paper-badge icon="social:mood" label="happy"></paper-badge>
         </div>
@@ -75,12 +75,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             margin-left: 30px;
             margin-right: 30px;
           }
-          /* Need to position the badge to look like a text superscript */
-          .container > paper-badge {
+          /** Space the badge away from its sibling. */
+          .sibling-example-basic > paper-badge {
             --paper-badge-margin-left: 20px;
             --paper-badge-margin-bottom: 0px;
           }
         </style>
+      </template>
+    </demo-snippet>
+
+    <h3>Badges can be applied to siblings using superscripted positioning</h3>
+    <demo-snippet class="centered-demo">
+      <template>
+        <div class="container" tabindex="0">
+          <span>Mood</span>
+          <paper-badge id="superscripted" icon="social:mood" label="happy"></paper-badge>
+        </div>
+
+        <style is="custom-style">
+          .container {
+            display: inline-block;
+            margin-left: 30px;
+            margin-right: 30px;
+          }
+        </style>
+
+        <script>
+          document.querySelector('#superscripted')._usingSuperscript = true;
+        </script>
       </template>
     </demo-snippet>
 
