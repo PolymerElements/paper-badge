@@ -1,0 +1,10 @@
+{
+  "name": "@polymer/paper-badge",
+  "private": true,
+  "description": "Material design status message for elements",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-badge.git"
+  },
+  "license": "BSD-3-Clause"
+}
