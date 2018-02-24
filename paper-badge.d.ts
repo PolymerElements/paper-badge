@@ -82,7 +82,6 @@ interface PaperBadgeElement extends Polymer.Element, Polymer.IronResizableBehavi
   icon: string|null|undefined;
   _boundNotifyResize: Function|null|undefined;
   _boundUpdateTarget: Function|null|undefined;
-  hostAttributes: object|null;
 
   /**
    * Returns the target element that this badge is anchored to. It is
