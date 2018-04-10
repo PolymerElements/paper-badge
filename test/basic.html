@@ -100,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           badge.updatePosition();
 
           requestAnimationFrame(function() {
-            assert.equal(actualbadge.textContent.trim(), "1");
+            assert.equal(actualbadge.textContent.trim(), '1');
 
             var divRect = f.querySelector('#target').getBoundingClientRect();
             expect(divRect.width).to.be.equal(100);
@@ -124,124 +124,130 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
-      test('badge is positioned correctly after initially being hidden', function(done) {
-        var f = fixture('initially-hidden');
-        var badge = f.querySelector('paper-badge');
-        var actualbadge = Polymer.dom(badge.root).querySelector('.badge');
+      test(
+          'badge is positioned correctly after initially being hidden',
+          function(done) {
+            var f = fixture('initially-hidden');
+            var badge = f.querySelector('paper-badge');
+            var actualbadge = Polymer.dom(badge.root).querySelector('.badge');
 
-        expect(badge.target.getAttribute('id')).to.be.equal('target');
+            expect(badge.target.getAttribute('id')).to.be.equal('target');
 
-        // Badge is initially hidden.
-        var contentRect = badge.getBoundingClientRect();
-        expect(contentRect.width).to.be.equal(0);
-        expect(contentRect.height).to.be.equal(0);
+            // Badge is initially hidden.
+            var contentRect = badge.getBoundingClientRect();
+            expect(contentRect.width).to.be.equal(0);
+            expect(contentRect.height).to.be.equal(0);
 
-        // we are waiting for rAF to prevent flakiness that comes associated
-        // with offsetParent not being calculated correctly in 2.0
-        requestAnimationFrame(function() {
-          badge.removeAttribute('hidden');
-
-          requestAnimationFrame(function() {
-            assert.equal(actualbadge.textContent.trim(), "1");
-
-            var divRect = f.querySelector('#target').getBoundingClientRect();
-            expect(divRect.width).to.be.equal(100);
-            expect(divRect.height).to.be.equal(20);
-
-            contentRect = badge.getBoundingClientRect();
-            expect(contentRect.width).to.be.equal(20);
-            expect(contentRect.height).to.be.equal(20);
-
-            // The target div is 100 x 20, and the badge is centered on the
-            // top right corner.
-            expect(contentRect.left).to.be.equal(100 - 10);
-            expect(contentRect.top).to.be.equal(0 - 10);
-
-            // Also check the math, just in case.
-            expect(contentRect.left).to.be.equal(divRect.width - 10);
-            expect(contentRect.top).to.be.equal(divRect.top - 10);
-
-            done();
-          });
-        });
-      });
-
-      test('badge is positioned correctly after being dynamically set', function(done) {
-        var f = fixture('dynamic');
-        var badge = f.querySelector('paper-badge');
-        badge.updatePosition();
-
-        expect(badge.target.getAttribute('id')).to.not.be.equal('target');
-
-        // we are waiting for rAF to prevent flakiness that comes associated
-        // with offsetParent not being calculated correctly in 2.0
-        requestAnimationFrame(function() {
-          var contentRect = badge.getBoundingClientRect();
-          expect(contentRect.left).to.not.be.equal(100 - 11);
-
-          badge.for = 'target';
-          expect(badge.target.getAttribute('id')).to.be.equal('target');
-
-          requestAnimationFrame(function() {
-            badge.updatePosition();
-
+            // we are waiting for rAF to prevent flakiness that comes associated
+            // with offsetParent not being calculated correctly in 2.0
             requestAnimationFrame(function() {
-              var divRect = f.querySelector('#target').getBoundingClientRect();
-              expect(divRect.width).to.be.equal(100);
-              expect(divRect.height).to.be.equal(20);
+              badge.removeAttribute('hidden');
 
-              var contentRect = badge.getBoundingClientRect();
-              expect(contentRect.width).to.be.equal(20);
-              expect(contentRect.height).to.be.equal(20);
+              requestAnimationFrame(function() {
+                assert.equal(actualbadge.textContent.trim(), '1');
 
-              // The target div is 100 x 20, and the badge is centered on the
-              // top right corner.
-              expect(contentRect.left).to.be.equal(100 - 10);
-              expect(contentRect.top).to.be.equal(0 - 10);
+                var divRect = f.querySelector('#target').getBoundingClientRect();
+                expect(divRect.width).to.be.equal(100);
+                expect(divRect.height).to.be.equal(20);
 
-              // Also check the math, just in case.
-              expect(contentRect.left).to.be.equal(divRect.width - 10);
-              expect(contentRect.top).to.be.equal(divRect.top - 10);
+                contentRect = badge.getBoundingClientRect();
+                expect(contentRect.width).to.be.equal(20);
+                expect(contentRect.height).to.be.equal(20);
 
-              done();
+                // The target div is 100 x 20, and the badge is centered on the
+                // top right corner.
+                expect(contentRect.left).to.be.equal(100 - 10);
+                expect(contentRect.top).to.be.equal(0 - 10);
+
+                // Also check the math, just in case.
+                expect(contentRect.left).to.be.equal(divRect.width - 10);
+                expect(contentRect.top).to.be.equal(divRect.top - 10);
+
+                done();
+              });
             });
           });
-        });
-      });
 
-      test('badge is positioned correctly when nested in a target element', function(done) {
-        var f = fixture('nested');
-        var badge = f.querySelector('paper-badge');
+      test(
+          'badge is positioned correctly after being dynamically set',
+          function(done) {
+            var f = fixture('dynamic');
+            var badge = f.querySelector('paper-badge');
+            badge.updatePosition();
 
-        expect(badge.target.getAttribute('id')).to.be.equal('target');
+            expect(badge.target.getAttribute('id')).to.not.be.equal('target');
 
-        // we are waiting for rAF to prevent flakiness that comes associated
-        // with offsetParent not being calculated correctly in 2.0
-        requestAnimationFrame(function() {
-          badge.updatePosition();
+            // we are waiting for rAF to prevent flakiness that comes associated
+            // with offsetParent not being calculated correctly in 2.0
+            requestAnimationFrame(function() {
+              var contentRect = badge.getBoundingClientRect();
+              expect(contentRect.left).to.not.be.equal(100 - 11);
 
-          requestAnimationFrame(function() {
-            var divRect = f.querySelector('#target').getBoundingClientRect();
-            expect(divRect.width).to.be.equal(100);
-            expect(divRect.height).to.be.equal(20);
+              badge.for = 'target';
+              expect(badge.target.getAttribute('id')).to.be.equal('target');
 
-            var contentRect = badge.getBoundingClientRect();
-            expect(contentRect.width).to.be.equal(20);
-            expect(contentRect.height).to.be.equal(20);
+              requestAnimationFrame(function() {
+                badge.updatePosition();
 
-            // The target div is 100 x 20, and the badge is centered on the
-            // top right corner.
-            expect(contentRect.left).to.be.equal(100 - 10);
-            expect(contentRect.top).to.be.equal(0 - 10);
+                requestAnimationFrame(function() {
+                  var divRect = f.querySelector('#target').getBoundingClientRect();
+                  expect(divRect.width).to.be.equal(100);
+                  expect(divRect.height).to.be.equal(20);
 
-            // Also check the math, just in case.
-            expect(contentRect.left).to.be.equal(divRect.width - 10);
-            expect(contentRect.top).to.be.equal(divRect.top - 10);
+                  var contentRect = badge.getBoundingClientRect();
+                  expect(contentRect.width).to.be.equal(20);
+                  expect(contentRect.height).to.be.equal(20);
 
-            done();
+                  // The target div is 100 x 20, and the badge is centered on the
+                  // top right corner.
+                  expect(contentRect.left).to.be.equal(100 - 10);
+                  expect(contentRect.top).to.be.equal(0 - 10);
+
+                  // Also check the math, just in case.
+                  expect(contentRect.left).to.be.equal(divRect.width - 10);
+                  expect(contentRect.top).to.be.equal(divRect.top - 10);
+
+                  done();
+                });
+              });
+            });
           });
-        });
-      });
+
+      test(
+          'badge is positioned correctly when nested in a target element',
+          function(done) {
+            var f = fixture('nested');
+            var badge = f.querySelector('paper-badge');
+
+            expect(badge.target.getAttribute('id')).to.be.equal('target');
+
+            // we are waiting for rAF to prevent flakiness that comes associated
+            // with offsetParent not being calculated correctly in 2.0
+            requestAnimationFrame(function() {
+              badge.updatePosition();
+
+              requestAnimationFrame(function() {
+                var divRect = f.querySelector('#target').getBoundingClientRect();
+                expect(divRect.width).to.be.equal(100);
+                expect(divRect.height).to.be.equal(20);
+
+                var contentRect = badge.getBoundingClientRect();
+                expect(contentRect.width).to.be.equal(20);
+                expect(contentRect.height).to.be.equal(20);
+
+                // The target div is 100 x 20, and the badge is centered on the
+                // top right corner.
+                expect(contentRect.left).to.be.equal(100 - 10);
+                expect(contentRect.top).to.be.equal(0 - 10);
+
+                // Also check the math, just in case.
+                expect(contentRect.left).to.be.equal(divRect.width - 10);
+                expect(contentRect.top).to.be.equal(divRect.top - 10);
+
+                done();
+              });
+            });
+          });
 
       test('badge displays icons correctly', function(done) {
         var f = fixture('icon-badge');
@@ -270,7 +276,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             badge.updatePosition();
 
             requestAnimationFrame(function() {
-              assert.equal(actualbadge.textContent.trim(), "1");
+              assert.equal(actualbadge.textContent.trim(), '1');
 
               var divRect = f.$.button.getBoundingClientRect();
               expect(divRect.width).to.be.equal(100);
