@@ -1,0 +1,32 @@
+{
+  "files": {
+    "paper-badge.html": {
+      "convertedUrl": "paper-badge.js",
+      "exports": {}
+    },
+    "index.html": {
+      "convertedUrl": "index.html",
+      "exports": {}
+    },
+    "demo/index.html": {
+      "convertedUrl": "demo/index.html",
+      "exports": {}
+    },
+    "demo/test-button.html": {
+      "convertedUrl": "demo/test-button.js",
+      "exports": {}
+    },
+    "test/basic.html": {
+      "convertedUrl": "test/basic.html",
+      "exports": {}
+    },
+    "test/test-button.html": {
+      "convertedUrl": "test/test-button.js",
+      "exports": {}
+    },
+    "test/index.html": {
+      "convertedUrl": "test/index.html",
+      "exports": {}
+    }
+  }
+}
