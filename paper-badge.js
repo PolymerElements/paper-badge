@@ -1,12 +1,22 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
+import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/paper-styles/default-theme.js';
+import '@polymer/paper-styles/typography.js';
+
+import {IronResizableBehavior} from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 /**
 `<paper-badge>` is a circular text badge that is displayed on the top right
 corner of an element, representing a status or a notification. It will badge
@@ -15,9 +25,10 @@ centered to the parent node containing it.
 
 Badges can also contain an icon by adding the `icon` attribute and setting
 it to the id of the desired icon. Please note that you should still set the
-`label` attribute in order to keep the element accessible. Also note that you will need to import
-the `iron-iconset` that includes the icons you want to use. See [iron-icon](../iron-icon)
-for more information on how to import and use icon sets.
+`label` attribute in order to keep the element accessible. Also note that you
+will need to import the `iron-iconset` that includes the icons you want to use.
+See [iron-icon](../iron-icon) for more information on how to import and use icon
+sets.
 
 Example:
 
@@ -28,12 +39,26 @@ Example:
 
     <div>
       <paper-button id="btn">Status</paper-button>
-      <paper-badge icon="favorite" for="btn" label="favorite icon"></paper-badge>
+      <paper-badge
+          icon="favorite"
+          for="btn"
+          label="favorite icon">
+      </paper-badge>
     </div>
 
     <div>
-      <paper-icon-button id="account-box" icon="account-box" alt="account-box"></paper-icon-button>
-      <paper-badge icon="social:mood" for="account-box" label="mood icon"></paper-badge>
+      <paper-icon-button
+          id="account-box"
+          icon="account-box"
+          alt="account-box">
+      </paper-icon-button>
+      <paper-badge
+          icon="social:mood"
+          for="account-box"
+          label="mood
+          icon">
+      </paper-badge>
+
     </div>
 
 ### Styling
@@ -55,21 +80,6 @@ Custom property | Description | Default
 @element paper-badge
 @demo demo/index.html
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-import '@polymer/polymer/polymer-legacy.js';
-
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
-import '@polymer/paper-styles/default-theme.js';
-import '@polymer/paper-styles/typography.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
 Polymer({
   _template: html`
     <style>
@@ -112,14 +122,18 @@ Polymer({
       <iron-icon hidden\$="{{!_computeIsIconBadge(icon)}}" icon="{{icon}}"></iron-icon>
       <span id="badge-text" hidden\$="{{_computeIsIconBadge(icon)}}">{{label}}</span>
     </div>
-`,
+  `,
 
   is: 'paper-badge',
 
   /** @private */
-  hostAttributes: {role: 'status', tabindex: 0},
+  hostAttributes: {
+    role: 'status',
+    tabindex: 0,
+  },
 
   behaviors: [IronResizableBehavior],
+
   listeners: {'iron-resize': 'updatePosition'},
 
   properties: {
@@ -127,13 +141,19 @@ Polymer({
      * The id of the element that the badge is anchored to. This element
      * must be a sibling of the badge.
      */
-    for: {type: String, observer: '_forChanged'},
+    for: {
+      type: String,
+      observer: '_forChanged',
+    },
 
     /**
      * The label displayed in the badge. The label is centered, and ideally
      * should have very few characters.
      */
-    label: {type: String, observer: '_labelChanged'},
+    label: {
+      type: String,
+      observer: '_labelChanged',
+    },
 
     /**
      * An iron-icon ID. When given, the badge content will use an
@@ -141,7 +161,10 @@ Polymer({
      * label text. However, the label text will still be used for
      * accessibility purposes.
      */
-    icon: {type: String, value: ''},
+    icon: {
+      type: String,
+      value: '',
+    },
 
     _boundNotifyResize: {
       type: Function,
