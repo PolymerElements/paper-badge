@@ -1,23 +1,6 @@
-
-<!---
-
-This README is automatically generated from the comments in these files:
-paper-badge.html
-
-Edit those files, and our readme bot will duplicate them over here!
-Edit this file, and the bot will squash your changes :)
-
-The bot does some handling of markdown. Please file a bug if it does the wrong
-thing! https://github.com/PolymerLabs/tedium/issues
-
--->
-
+[![Published on NPM](https://img.shields.io/npm/v/@polymer/paper-badge.svg)](https://www.npmjs.com/package/@polymer/paper-badge)
 [![Build status](https://travis-ci.org/PolymerElements/paper-badge.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-badge)
-
-_[Demo and API docs](https://elements.polymer-project.org/elements/paper-badge)_
-
-## Changes in 2.0
-* Target updates target in an animation frame rather than 1 ms.
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/@polymer/paper-badge)
 
 ## &lt;paper-badge&gt;
 
@@ -26,11 +9,102 @@ corner of an element, representing a status or a notification. It will badge
 the anchor element specified in the `for` attribute, or, if that doesn't exist,
 centered to the parent node containing it.
 
-Badges can also contain an icon by adding the `icon` attribute and setting
-it to the id of the desired icon. Please note that you should still set the
-`label` attribute in order to keep the element accessible. Also note that you will need to import
-the `iron-iconset` that includes the icons you want to use. See [iron-icon](../iron-icon)
-for more information on how to import and use icon sets.
+See: [Documentation](https://www.webcomponents.org/element/@polymer/paper-badge),
+  [Demo](https://www.webcomponents.org/element/@polymer/paper-badge/demo/demo/index.html).
+
+## Usage
+
+### Installation
+```
+npm install --save @polymer/paper-badge
+```
+
+### In an html file
+```html
+<html>
+  <head>
+    <script type="module">
+      import '@polymer/paper-badge/paper-badge.js';
+      import '@polymer/paper-button/paper-button.js';
+      import '@polymer/paper-icon-button/paper-icon-button.js';
+      import '@polymer/iron-icons/iron-icons.js';
+      import '@polymer/iron-icons/social-icons.js';
+    </script>
+  </head>
+  <body>
+    <div style="display:inline-block">
+      <span>Inbox</span>
+      <paper-badge label="3"></paper-badge>
+    </div>
+
+    <div>
+      <paper-button id="btn">Status</paper-button>
+      <paper-badge
+          icon="favorite"
+          for="btn"
+          label="favorite icon">
+      </paper-badge>
+    </div>
+
+    <div>
+      <paper-icon-button
+          id="account-box"
+          icon="account-box"
+          alt="account-box">
+      </paper-icon-button>
+      <paper-badge
+          icon="social:mood"
+          for="account-box"
+          label="mood icon">
+      </paper-badge>
+    </div>
+  </body>
+</html>
+```
+### In a Polymer 3 element
+```js
+import {PolymerElement, html} from '@polymer/polymer';
+import '@polymer/paper-badge/paper-badge.js';
+import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/iron-icons/social-icons.js';
+
+class SampleElement extends PolymerElement {
+  static get template() {
+    return html`
+      <div style="display:inline-block">
+        <span>Inbox</span>
+        <paper-badge label="3"></paper-badge>
+      </div>
+
+      <div>
+        <paper-button id="btn">Status</paper-button>
+        <paper-badge
+            icon="favorite"
+            for="btn"
+            label="favorite icon">
+        </paper-badge>
+      </div>
+
+      <div>
+        <paper-icon-button
+            id="account-box"
+            icon="account-box"
+            alt="account-box">
+        </paper-icon-button>
+        <paper-badge
+            icon="social:mood"
+            for="account-box"
+            label="mood icon">
+        </paper-badge>
+      </div>
+    `;
+  }
+}
+customElements.define('sample-element', SampleElement);
+```
+
 
 Example:
 
@@ -50,20 +124,25 @@ Example:
   <paper-badge icon="social:mood" for="account-box" label="mood icon"></paper-badge>
 </div>
 ```
+## Contributing
+If you want to send a PR to this element, here are
+the instructions for running the tests and demo locally:
 
-### Styling
+### Installation
+```sh
+git clone https://github.com/PolymerElements/paper-badge
+cd paper-badge
+npm install
+npm install -g polymer-cli
+```
 
-The following custom properties and mixins are available for styling:
+### Running the demo locally
+```sh
+polymer serve --npm
+open http://127.0.0.1:<port>/demo/
+```
 
-| Custom property | Description | Default |
-| --- | --- | --- |
-| `--paper-badge-background` | The background color of the badge | `--accent-color` |
-| `--paper-badge-opacity` | The opacity of the badge | `1.0` |
-| `--paper-badge-text-color` | The color of the badge text | `white` |
-| `--paper-badge-width` | The width of the badge circle | `20px` |
-| `--paper-badge-height` | The height of the badge circle | `20px` |
-| `--paper-badge-margin-left` | Optional spacing added to the left of the badge. | `0px` |
-| `--paper-badge-margin-bottom` | Optional spacing added to the bottom of the badge. | `0px` |
-| `--paper-badge` | Mixin applied to the badge | `{}` |
-
-
+### Running the tests
+```sh
+polymer test --npm
+```
