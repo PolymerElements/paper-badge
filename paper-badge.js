@@ -76,11 +76,11 @@ Custom property | Description | Default
 `--paper-badge-margin-bottom` | Optional spacing added to the bottom of the badge. | `0px`
 `--paper-badge` | Mixin applied to the badge | `{}`
 
-@group Paper Elements
 @element paper-badge
 @demo demo/index.html
 */
 Polymer({
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -181,11 +181,14 @@ Polymer({
     }
   },
 
+  /** @override */
   attached: function() {
     // Polymer 2.x does not have this.offsetParent defined by attached
     requestAnimationFrame(this._boundUpdateTarget);
   },
 
+
+  /** @override */
   attributeChanged: function(name) {
     if (name === 'hidden') {
       this.updatePosition();
