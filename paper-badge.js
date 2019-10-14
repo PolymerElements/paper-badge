@@ -72,6 +72,8 @@ Custom property | Description | Default
 `--paper-badge-text-color` | The color of the badge text | `white`
 `--paper-badge-width` | The width of the badge circle | `20px`
 `--paper-badge-height` | The height of the badge circle | `20px`
+`--paper-badge-icon-width` | The width of the badge icon, allowed up to the width of the badge | `12px`
+`--paper-badge-icon-height` | The height of the badge icon, allowed up to the height of the badge | `12px`
 `--paper-badge-margin-left` | Optional spacing added to the left of the badge. | `0px`
 `--paper-badge-margin-bottom` | Optional spacing added to the bottom of the badge. | `0px`
 `--paper-badge` | Mixin applied to the badge | `{}`
@@ -94,8 +96,8 @@ Polymer({
       }
 
       iron-icon {
-        --iron-icon-width: 12px;
-        --iron-icon-height: 12px;
+        --iron-icon-width: var(--paper-badge-icon-width, 12px);
+        --iron-icon-height: var(--paper-badge-icon-height, 12px);
       }
 
       .badge {
