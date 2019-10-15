@@ -74,6 +74,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="icon-badge-large">
+    <template>
+      <!-- Necessary to configure the paper-badge and iron-icon dimensions -->
+      <style is="custom-style">
+        paper-badge.large {
+          --paper-badge-width: 30px;
+          --paper-badge-height: 30px;
+          margin-left: 5px;
+        }
+        paper-badge.large-icon {
+          --paper-badge-icon-width: 29px;
+          --paper-badge-icon-height: 29px;
+        }
+      </style>
+
+      <paper-badge icon="social:mood" label="happy" class="large large-icon">
+    </template>
+  </test-fixture>
+
   <test-fixture id="initially-hidden">
     <template>
       <div style="position:relative">
@@ -262,6 +281,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(icon).not.to.be.null;
           expect(icon.icon).to.be.equal(badge.icon);
           expect(badge.getAttribute('aria-label')).to.be.equal(badge.label);
+          done();
+        });
+      });
+
+      test('badge icon dimensions can be configured', function(done) {
+        var f = fixture('icon-badge-large');
+        var badge = f[1];  // style is the first item and paper-badge the second.
+        requestAnimationFrame(function() {
+          var icon = dom(badge.root).querySelector('iron-icon');
+          var iconRect = icon.getBoundingClientRect();
+          expect(icon).not.to.be.null;
+          expect(iconRect.width).to.equal(29);
+          expect(iconRect.height).to.equal(29);
           done();
         });
       });
