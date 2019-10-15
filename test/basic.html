@@ -287,7 +287,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       test('badge icon dimensions can be configured', function(done) {
         var f = fixture('icon-badge-large');
-        var badge = f[1];   // style is the first item and paper-badge the second.
+        var badge = f[1];  // style is the first item and paper-badge the second.
         requestAnimationFrame(function() {
           var icon = dom(badge.root).querySelector('iron-icon');
           var iconRect = icon.getBoundingClientRect();
