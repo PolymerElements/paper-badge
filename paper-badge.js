@@ -121,8 +121,8 @@ Polymer({
     </style>
 
     <div class="badge">
-      <iron-icon hidden\$="{{!_computeIsIconBadge(icon)}}" icon="{{icon}}"></iron-icon>
-      <span id="badge-text" hidden\$="{{_computeIsIconBadge(icon)}}">{{label}}</span>
+      <iron-icon hidden$="{{!_computeIsIconBadge(icon)}}" icon="{{icon}}"></iron-icon>
+      <span id="badge-text" hidden$="{{_computeIsIconBadge(icon)}}">{{label}}</span>
     </div>
   `,
 
